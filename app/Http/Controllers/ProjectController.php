@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\project;
-
+use App\Models\Document;
 
 class ProjectController extends Controller
 {
@@ -26,16 +26,18 @@ class ProjectController extends Controller
             'price' => 'required|numeric',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
+            'document_name' => 'required|file',
         ]);
 
-        Project::create($request->all());
+        
+        $project = Project::create($validated);
 
         if ($request->hasFile('document_name')) {
 
             $file = $request->file('document_name');
 
             $filename = time() . '_' . $file->getClientOriginalName();
-
+            
             $file->move(public_path('projectAssets'), $filename);
 
             Document::create([
@@ -44,18 +46,9 @@ class ProjectController extends Controller
             ]);
         }
 
-
-        
-
-        document::create(
-            [
-                'document_name' => $request->input('document_name'),
-                'project_id' => $request->id,
-            ]
-        );
-
         return redirect()->route('project.create')->with('success', 'Project created successfully.');
     }
+
 
     public function view_edit($id)
     {
