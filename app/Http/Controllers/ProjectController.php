@@ -30,7 +30,29 @@ class ProjectController extends Controller
 
         Project::create($request->all());
 
-        // document::create($request->all());
+        if ($request->hasFile('document_name')) {
+
+            $file = $request->file('document_name');
+
+            $filename = time() . '_' . $file->getClientOriginalName();
+
+            $file->move(public_path('projectAssets'), $filename);
+
+            Document::create([
+                'document_name' => 'projectAssets/' . $filename,
+                'project_id'    => $project->id,
+            ]);
+        }
+
+
+        
+
+        document::create(
+            [
+                'document_name' => $request->input('document_name'),
+                'project_id' => $request->id,
+            ]
+        );
 
         return redirect()->route('project.create')->with('success', 'Project created successfully.');
     }

@@ -21,7 +21,7 @@ use App\Models\Document;
 
 <body>
     <div class="container align-content-center mt-5">
-        <form method="POST" action="{{ route('project.store') }}">
+        <form method="POST" action="{{ route('project.store') }}" enctype="multipart/form-data">
             @csrf
 
             <!-- Project Name -->
