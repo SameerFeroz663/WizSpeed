@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\project;
 use App\Models\Document;
+use App\Models\User;
 
 class ProjectController extends Controller
 {
@@ -13,7 +14,9 @@ class ProjectController extends Controller
 
         $projects = project::all();
 
-       return view('project', compact('projects'));
+        $users = User::all();
+
+       return view('project', compact('projects', 'users'));
 
     }
 
@@ -22,7 +25,8 @@ class ProjectController extends Controller
         $validated = $request->validate([
             'project_name' => 'required|string|max:255',
             'client_name' => 'required|string|max:255',
-            'assign_to' => 'required|string|max:255',
+            'membership' => 'required|string|max:255',
+            // 'assign_to' => 'required|string|max:255',
             'price' => 'required|numeric',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
