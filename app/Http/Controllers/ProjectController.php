@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\Models\project;
@@ -11,13 +12,17 @@ class ProjectController extends Controller
 {
     public function create()
     {
+        $userId = Auth::id();
 
-        $projects = project::all();
+        $projects = project::where('user_id', $userId)->get();
 
         $users = User::all();
 
-       return view('project', compact('projects', 'users'));
+        $projectUserIds = Project::pluck('user_id')->unique();
+        
+        $project_user = User::where('id', $projectUserIds)->get();
 
+        return view('project', compact('projects', 'users', 'userId', 'project_user'));
     }
 
     public function store(Request $request)
@@ -26,10 +31,11 @@ class ProjectController extends Controller
             'project_name' => 'required|string|max:255',
             'client_name' => 'required|string|max:255',
             'membership' => 'required|string|max:255',
-            // 'assign_to' => 'required|string|max:255',
+            'assign_to' => 'nullable|exists:users,id',
             'price' => 'required|numeric',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
+            'user_id' => 'required|exists:users,id',
             'document_name' => 'required|file',
         ]);
 
