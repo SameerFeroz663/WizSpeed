@@ -15,7 +15,7 @@
                     <li class="mb-2">
                         <!-- Light Mode Version (hidden in dark mode) -->
                         <div class="light-mode-item">
-                            <a href="#" class="flex items-center p-3 rounded-lg bg-orange-500 text-white font-semibold shadow-md">
+                            <a href="/" class="flex items-center p-3 rounded-lg bg-orange-500 text-white font-semibold shadow-md">
                             <img src="{{ asset('assets/home-DARK.svg') }}" alt="icon" class="w-8 h-6 light-mode-icon">
                             Dashboard
                             </a>
@@ -62,7 +62,7 @@
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="settings.html" class="flex items-center p-3 rounded-lg light-text-gray-700 light-hover-bg-gray-200 transition-colors">
+                        <a href="{{route('profile.edit')}}" class="flex items-center p-3 rounded-lg light-text-gray-700 light-hover-bg-gray-200 transition-colors">
                             <img src="{{asset('assets/settings.svg')}}" alt="icon" class="w-8 h-6 light-mode-icon" data-dark-src="{{asset('assets/settings-DARK.svg')}}">
                             Settings
                         </a>

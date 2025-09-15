@@ -1073,110 +1073,81 @@
                         <!-- Overview content here -->
                         <!-- Overview Cards -->
                         <!-- User's Projects List Table -->
-                         <form method="post" action="{{ route('profile.update') }}" enctype="multipart/form-data">
-                                    @csrf
-                                    @method('patch')
                         <div class="w-full h-full light-bg-d9d9d9 p-5 rounded-md">
                             <h3 class="font-medium pb-6 text-2xl">Profile Details</h3>
                             <div class="flex justify-start items-center gap-10">
                                 <img src="Avatar.png" alt="">
                                 <div>
-                                    {{-- <input class="bg-gray-200 p-2 mb-2 rounded-lg border dark-border-gray-500" type='file' name='photo'/> --}}
-                                    <input type="file" name="photo" id="" class="bg-gray-200 p-2 mb-2 rounded-lg border dark-border-gray-500">
+                                    <button class="bg-gray-200 p-2 mb-2 rounded-lg border dark-border-gray-500">Upload
+                                        Photo</button>
                                     <p>Allowed JPG, GIF or PNG. Max size of 800K</p>
                                 </div>
                             </div>
-                            <section class="pt-5 pb-5">
-                                <header class="mb-6">
-                                    <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                                        {{ __('Profile Information') }}
-                                    </h2>
-                                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                        {{ __("Update your account's profile information and email address.") }}
-                                    </p>
-                                </header>
+                            <div class="pt-5 pb-5">
 
-                                {{-- Verification form --}}
-                                {{-- <form id="send-verification" method="post"
-                                    action="{{ route('verification.send') }}">
-                                    @csrf
-                                </form> --}}
-
-                                {{-- Profile update form --}}
-                               
-
-                                    {{-- Name and Email --}}
-                                    <div class="grid grid-cols-2 gap-4 pb-5">
-                                        <div>
-                                            <label for="name"
-                                                class="block text-sm mb-1 light-text-black">Name</label>
-                                            <div class="relative flex-grow">
-                                                <input type="text" name="name" id="name"
-                                                    value="{{ old('name', $user->name) }}" placeholder="John Doe"
-                                                    required autofocus autocomplete="name"
-                                                    class="w-full p-2 pr-16 rounded light-bg-d7d7d7 border border-gray-700 text-white focus:outline-none">
-                                                <x-input-error class="mt-2" :messages="$errors->get('name')" />
-                                            </div>
+                                <div class="grid-cols-2 grid gap-4 pb-5">
+                                    <div>
+                                        <label class="block text-sm mb-1 light-text-black">First Name</label>
+                                        <div class="relative flex-grow">
+                                            <input type="text" name="title" placeholder="John"
+                                                class="w-full p-2 pr-16 rounded light-bg-d7d7d7 border border-gray-700 text-white focus:outline-none">
                                         </div>
-                                        <div>
-                                            <label for="email"
-                                                class="block text-sm mb-1 light-text-black">Email</label>
-                                            <div class="relative flex-grow">
-                                                <input type="email" name="email" id="email"
-                                                    value="{{ old('email', $user->email) }}"
-                                                    placeholder="john.doe@gmail.com" required autocomplete="username"
-                                                    class="w-full p-2 pr-16 rounded light-bg-d7d7d7 border border-gray-700 text-white focus:outline-none">
-                                                <x-input-error class="mt-2" :messages="$errors->get('email')" />
-
-                                                @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
-                                                    <p class="text-sm mt-2 text-gray-800 dark:text-gray-200">
-                                                        {{ __('Your email address is unverified.') }}
-                                                        <button form="send-verification"
-                                                            class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-                                                            {{ __('Click here to re-send the verification email.') }}
-                                                        </button>
-                                                    </p>
-                                                    @if (session('status') === 'verification-link-sent')
-                                                        <p
-                                                            class="mt-2 font-medium text-sm text-green-600 dark:text-green-400">
-                                                            {{ __('A new verification link has been sent to your email address.') }}
-                                                        </p>
-                                                    @endif
-                                                @endif
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm mb-1 light-text-black">Second Name</label>
+                                        <div class="relative flex-grow">
+                                            <input type="text" name="title" placeholder="Doe"
+                                                class="w-full p-2 pr-16 rounded light-bg-d7d7d7 border border-gray-700 text-white focus:outline-none">
+                                            <div
+                                                class="absolute right-2 top-1/2 transform -translate-y-1/2 flex gap-2">
                                             </div>
                                         </div>
                                     </div>
-
-                                    {{-- Company and Website (example extra fields) --}}
-                                    <div class="grid grid-cols-2 gap-4 pb-5">
-                                        <div>
-                                            <label class="block text-sm mb-1 light-text-black">Company/Organization
-                                                Name</label>
-                                            <div class="relative flex-grow">
-                                                <input type="text" name="company" placeholder="WIZSPEED"
-                                                    class="w-full p-2 pr-16 rounded light-bg-d7d7d7 border border-gray-700 text-white focus:outline-none"
-                                                    value="{{ old('company', $user->company) }}">
-                                            </div>
+                                </div>
+                                <div class="grid-cols-2 grid gap-4 pb-5">
+                                    <div>
+                                        <label class="block text-sm mb-1 light-text-black">email</label>
+                                        <div class="relative flex-grow">
+                                            <input type="email" name="email" placeholder="John.Doe@gmail.com"
+                                                class="w-full p-2 pr-16 rounded light-bg-d7d7d7 border border-gray-700 text-white focus:outline-none">
                                         </div>
-                                        <div>
-                                            <label class="block text-sm mb-1 light-text-black">Business Website</label>
-                                            <div class="relative flex-grow">
-                                                <input type="text" name="website" placeholder="www.wizspeed.com"
-                                                    class="w-full p-2 pr-16 rounded light-bg-d7d7d7 border border-gray-700 text-white focus:outline-none"
-                                                    value="{{ old('website', $user->website) }}">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm mb-1 light-text-black">Phone Number</label>
+                                        <div class="relative flex-grow">
+                                            <input type="number" name="Phone" placeholder="0000 0000 0000"
+                                                class="w-full p-2 pr-16 rounded light-bg-d7d7d7 border border-gray-700 text-white focus:outline-none">
+                                            <div
+                                                class="absolute right-2 top-1/2 transform -translate-y-1/2 flex gap-2">
                                             </div>
                                         </div>
                                     </div>
-                                    @error('company')
-    <span class="text-danger text-sm">{{ $message }}</span>
-@enderror
+                                </div>
+                                <div class="grid-cols-2 grid gap-4">
+                                    <div>
+                                        <label class="block text-sm mb-1 light-text-black">Company/Organization
+                                            Name</label>
+                                        <div class="relative flex-grow">
+                                            <input type="text" name="title" placeholder="WIZSPEED"
+                                                class="w-full p-2 pr-16 rounded light-bg-d7d7d7 border border-gray-700 text-white focus:outline-none">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm mb-1 light-text-black">Business Website</label>
+                                        <div class="relative flex-grow">
+                                            <input type="text" name="title" placeholder="wwww.wizspeed.com"
+                                                class="w-full p-2 pr-16 rounded light-bg-d7d7d7 border border-gray-700 text-white focus:outline-none">
+                                            <div
+                                                class="absolute right-2 top-1/2 transform -translate-y-1/2 flex gap-2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Buttons -->
+                                <div class="flex justify-end items-center mt-5">
 
-@error('website')
-    <span class="text-danger text-sm">{{ $message }}</span>
-@enderror
-                                    {{-- Buttons --}}
                                     <div class="flex justify-end gap-3 pt-3">
-                                        <button type="button"
+                                        <button type="button" id="cancelTicket"
                                             class="px-4 py-2 light-text-black light-bg-d7d7d7 rounded-lg hover:bg-gray-600">
                                             Cancel
                                         </button>
@@ -1184,93 +1155,82 @@
                                             class="px-4 py-2 btn-orange text-white rounded-lg hover:bg-orange-600">
                                             Save
                                         </button>
-
-                                        @if (session('status') === 'profile-updated')
-                                            <p x-data="{ show: true }" x-show="show" x-transition
-                                                x-init="setTimeout(() => show = false, 2000)"
-                                                class="text-sm text-gray-600 dark:text-gray-400 ml-4">
-                                                {{ __('Saved.') }}
-                                            </p>
-                                        @endif
                                     </div>
-                                </form>
-                            </section>
+                                </div>
 
+                            </div>
                         </div>
                     </div>
 
                 </div>
-             <div id="notesContent" class="tab-content hidden">
-    <form method="post" action="{{ route('password.update') }}">
-        @csrf
-        @method('put')
+                <div id="notesContent" class="tab-content hidden">
+                    <!-- Notes content here -->
+                    <div class="w-full h-full light-bg-f5f5f5 light-bg-seo p-5 mb-5 rounded-md">
+                        <h3 class="font-medium pb-6 text-2xl">Change Password</h3>
+                        <div class="flex justify-start items-center gap-10">
 
-        <div class="w-full h-full light-bg-f5f5f5 light-bg-seo p-5 mb-5 rounded-md">
-            <h3 class="font-medium pb-6 text-2xl">Change Password</h3>
+                        </div>
+                        <div class="pt-5 pb-5">
 
-            {{-- Current Password --}}
-            <div class="grid grid-cols-2 gap-4 pb-5">
-                <div>
-                    <label class="block text-sm mb-1 light-text-black">Current Password</label>
-                    <div class="relative flex-grow">
-                        <input type="password" name="current_password"
-                            placeholder="Enter your Current Password"
-                            class="w-full p-2 pr-16 rounded light-bg-d7d7d7 border border-gray-700 text-white focus:outline-none">
-                        <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
+                            <div class="grid-cols-2 grid gap-4 pb-5">
+                                <div>
+                                    <label class="block text-sm mb-1 light-text-black">Current Password</label>
+                                    <div class="relative flex-grow">
+                                        <input type="password" name="password"
+                                            placeholder="Enter your Current Password"
+                                            class="w-full p-2 pr-16 rounded light-bg-d7d7d7 border border-gray-700 text-white focus:outline-none">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="grid-cols-2 grid gap-4 pb-5">
+                                <div>
+                                    <label class="block text-sm mb-1 light-text-black">New Password</label>
+                                    <div class="relative flex-grow">
+                                        <input type="password" name="password" placeholder="Enter your New Password"
+                                            class="w-full p-2 pr-16 rounded light-bg-d7d7d7 border border-gray-700 text-white focus:outline-none">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm mb-1 light-text-black">Confirm Password</label>
+                                    <div class="relative flex-grow">
+                                        <input type="password" name="password"
+                                            placeholder="Confirm your Current Password"
+                                            class="w-full p-2 pr-16 rounded light-bg-d7d7d7 border border-gray-700 text-white focus:outline-none">
+                                        <div class="absolute right-2 top-1/2 transform -translate-y-1/2 flex gap-2">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid-cols-2 grid gap-4">
+
+                                <div class="text-gray-400">
+                                    <h3 class="mb-2">Password Requirements:</h3>
+                                    <ul class="list-disc text-sm pl-5 space-y-1"> <!-- Tailwind classes -->
+                                        <li>Minimum 8 characters long - the more, the better</li>
+                                        <li>At least one lowercase character</li>
+                                        <li>At least one number, symbol, or whitespace character</li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <!-- Buttons -->
+                            <div class="flex justify-end items-center mt-5">
+
+                                <div class="flex justify-end gap-3 pt-3">
+                                    <button type="button" id="cancelTicket"
+                                        class="px-4 py-2 light-text-black light-bg-d7d7d7 rounded-lg hover:bg-gray-600">
+                                        Cancel
+                                    </button>
+                                    <button type="submit"
+                                        class="px-4 py-2 btn-orange text-white rounded-lg hover:bg-orange-600">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            {{-- New + Confirm Password --}}
-            <div class="grid grid-cols-2 gap-4 pb-5">
-                <div>
-                    <label class="block text-sm mb-1 light-text-black">New Password</label>
-                    <div class="relative flex-grow">
-                        <input type="password" name="password"
-                            placeholder="Enter your New Password"
-                            class="w-full p-2 pr-16 rounded light-bg-d7d7d7 border border-gray-700 text-white focus:outline-none">
-                        <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-sm mb-1 light-text-black">Confirm Password</label>
-                    <div class="relative flex-grow">
-                        <input type="password" name="password_confirmation"
-                            placeholder="Confirm your New Password"
-                            class="w-full p-2 pr-16 rounded light-bg-d7d7d7 border border-gray-700 text-white focus:outline-none">
-                        <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
-                    </div>
-                </div>
-            </div>
-
-            {{-- Password Requirements --}}
-            <div class="grid grid-cols-2 gap-4">
-                <div class="text-gray-400">
-                    <h3 class="mb-2">Password Requirements:</h3>
-                    <ul class="list-disc text-sm pl-5 space-y-1">
-                        <li>Minimum 8 characters long</li>
-                        <li>At least one lowercase character</li>
-                        <li>At least one number, symbol, or whitespace character</li>
-                    </ul>
-                </div>
-            </div>
-
-            {{-- Buttons --}}
-            <div class="flex justify-end gap-3 pt-6">
-                <button type="submit"
-                    class="px-4 py-2 btn-orange text-white rounded-lg hover:bg-orange-600">
-                    Save
-                </button>
-            </div>
-
-            {{-- Success message --}}
-            @if (session('status') === 'password-updated')
-                <p class="mt-3 text-sm text-green-600">Password updated successfully.</p>
-            @endif
-        </div>
-    </form>
-</div>
-
                     <div class="w-full h-full light-bg-f5f5f5 light-bg-seo mb-5 px-5 py-2 rounded-md">
                         <h3 class="font-medium pt-4 text-2xl">Two-steps verification</h3>
                         <div class="flex justify-start items-center gap-10">
@@ -3268,7 +3228,7 @@
                         const content = card.querySelector('.card-content');
                         const icon = event.target.querySelector('img.toggle-icon'); // Get the icon
                         const textNode = event.target.childNodes[
-                            0]; // Get the text node (assuming it's first)
+                        0]; // Get the text node (assuming it's first)
 
                         if (!content.style.maxHeight || content.style.maxHeight === '0px') {
                             content.style.maxHeight = content.scrollHeight + 'px';
@@ -3304,7 +3264,7 @@
             const openRolePopupBtn = document.getElementById('openRolePopup'); // ✅ Button to open role popup
             const closeRolePopupBtn = document.getElementById('rolePopupClose'); // ✅ Close
             const rolePopupConfirmBtn = document.getElementById(
-                'rolePopupConfirm'); // ✅ Confirm button for role popup
+            'rolePopupConfirm'); // ✅ Confirm button for role popup
 
 
             const openPopupBtn = document.getElementById('openPopup');
