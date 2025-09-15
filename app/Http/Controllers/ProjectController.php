@@ -14,15 +14,13 @@ class ProjectController extends Controller
     {
         $userId = Auth::id();
 
-        $projects = project::where('user_id', $userId)->get();
+        $projects = project::all();
 
         $users = User::all();
 
-        $projectUserIds = Project::pluck('user_id')->unique();
-        
-        $project_user = User::where('id', $projectUserIds)->get();
 
-        return view('project', compact('projects', 'users', 'userId', 'project_user'));
+
+        return view('project', compact('projects', 'users', 'userId'));
     }
 
     public function store(Request $request)

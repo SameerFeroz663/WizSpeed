@@ -16,4 +16,5 @@ class project extends Model
     'end_date',
     'user_id'
 ];
+
 }

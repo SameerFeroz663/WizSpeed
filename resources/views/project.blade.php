@@ -997,8 +997,8 @@
                                                  <td class="px-6 py-4 whitespace-nowrap text-sm light-text-gray-900">
                                                      <div class="flex items-center gap-1">
                                                          {{-- <img class="w-20 h-10" src="{{asset('assets/Avatar Group.svg')}}" alt=""> --}}
-                                                         @foreach ($project_user as $project_user)
-                                                             <p>{{ $project_user->name }}</p>
+                                                         @foreach ($users as $user)
+                                                             <p>{{ $user->name }}</p>
                                                          @endforeach
                                                      </div>
                                                  </td>
