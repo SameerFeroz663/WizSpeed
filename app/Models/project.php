@@ -11,6 +11,7 @@ class project extends Model
     'client_name',
     'assign_to',
     'price',
+    'user',
     'start_date',
     'end_date',
 ];
